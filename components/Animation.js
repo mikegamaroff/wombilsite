@@ -313,7 +313,45 @@ class Animation extends Component {
         yPercent: -60,
         delay: 0.5,
         ease: "Expo.easeIn(1, 1)",
-      });
+
+      }).to(".animation-forearm_r", {
+        duration: .5,
+        rotation: 10,
+        yPercent: 12,
+        xPercent: 3,
+        delay:1,
+        ease: "Power1.easeInOut(1, 1)",
+        transformOrigin: "90% 90%",
+        onCompleteParams: ["shout"],
+        onComplete: faceChange,
+
+      }).addLabel("megaphoneraise").to(".animation-arm_r", {
+        duration: .5,
+        rotation: -25,
+        xPercent: -3,
+        ease: "Power1.easeInOut(1, 1)",
+        transformOrigin: "13% 20%",
+        onCompleteParams: ["r"],
+        onComplete: handChange,
+      }, "-=.5").fromTo(".animation-megaphone", {
+      scaleX: 0,
+        scaleY: 0, 
+      },{
+        scaleX: 1,
+        scaleY: 1,
+/*         xPercent: 85,
+        yPercent: -130, */
+         duration: .3,
+          ease: "Elastic.easeInOut(1, 1)",
+      }, "+=.1") .to(
+        ".animation-head",
+        {
+          rotation:-5,
+          duration: 2,
+
+        },
+        "megaphoneraise"
+      )
     gsap.fromTo(
       ".animation-head",
       {
@@ -323,7 +361,6 @@ class Animation extends Component {
         duration: 1,
         rotation: 0,
         ease: "Power1.easeInOut(1, 1)",
-
         transformOrigin: "50% 90%",
       }
     );
@@ -387,6 +424,7 @@ class Animation extends Component {
             <img src={`/images/animation/inventory.svg`} />
           </div>
         </div>
+   
         <div className="animation-truck">
           <div id="truck">
             <img src={`/images/animation/truck.svg`} />
@@ -444,10 +482,16 @@ class Animation extends Component {
               </div>
             </div>
             <div className="animation-arm_r">
+         
               <div className="animation-upperarm_r">
                 <img src="/images/animation/upperarm_r.svg" />
               </div>
               <div className="animation-forearm_r">
+              <div className="animation-megaphone">
+          <div id="megaphone">
+            <img src={`/images/animation/megaphone.svg`} />
+          </div>
+        </div>
                 <img src={`/images/animation/forearm_${this.state.hand}.svg`} />
               </div>
             </div>

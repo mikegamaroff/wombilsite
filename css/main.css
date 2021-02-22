@@ -817,6 +817,18 @@ section#light {
 .animation-truck img {
   width: 100%;
 }
+.animation-megaphone {
+  position: absolute;
+  right: 30%;
+  width: 115%;
+  top: -30%;
+  z-index: 1;
+
+}
+.animation-megaphone img {
+  width: 100%;
+  transform: rotate(-20deg);
+}
 /* Large smaller */
 @media screen and (max-width: 1200px) {
   .mainTitles h2 {
