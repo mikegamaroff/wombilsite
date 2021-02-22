@@ -92,6 +92,7 @@ class Animation extends Component {
         }
         /*   "-=.4" */
       )
+
       .fromTo(
         ".animation-pointer",
         {
@@ -314,6 +315,28 @@ class Animation extends Component {
         delay: 0.5,
         ease: "Expo.easeIn(1, 1)",
       })
+      .fromTo(
+        ".animation-handbagbroke",
+        {
+          opacity: 0,
+          yPercent: 0,
+        },
+        {
+          duration: 0.5,
+          opacity: 1,
+          yPercent: -40,
+          ease: "Expo.easeOut(1, 1)",
+          onCompleteParams: ["surprise"],
+          onComplete: faceChange,
+        }
+      )
+      .to(".animation-handbagbroke", {
+        duration: 0.5,
+        opacity: 0,
+        yPercent: -80,
+        delay: 0.5,
+        ease: "Expo.easeIn(1, 1)",
+      })
       .to(".animation-forearm_r", {
         duration: 0.5,
         rotation: 10,
@@ -385,7 +408,7 @@ class Animation extends Component {
       )
       .addLabel("megaphone-item1")
       .to(".animation-megaphone", {
-        duration: 0.2,
+        duration: 0.1,
         scale: 1.15,
         ease: "Expo.easeInOut(1, 1)",
       })
@@ -396,16 +419,66 @@ class Animation extends Component {
       })
       .addLabel("megaphone-item2")
       .to(".animation-megaphone", {
-        duration: 0.2,
+        duration: 0.1,
         scale: 1.15,
-        delay: 1,
+        delay: 0.2,
         ease: "Expo.easeInOut(1, 1)",
       })
       .to(".animation-megaphone", {
         duration: 0.1,
         scale: 1,
         ease: "Expo.easeInOut(1, 1)",
-      });
+      })
+      .addLabel("megaphone-item3")
+      .to(".animation-megaphone", {
+        duration: 0.1,
+        scale: 1.15,
+        delay: 0.2,
+        ease: "Expo.easeInOut(1, 1)",
+      })
+      .to(".animation-megaphone", {
+        duration: 0.1,
+        scale: 1,
+        ease: "Expo.easeInOut(1, 1)",
+      })
+      .addLabel("megaphone-item4")
+      .to(".animation-megaphone", {
+        duration: 0.1,
+        scale: 1.15,
+        delay: 0.2,
+        ease: "Expo.easeInOut(1, 1)",
+      })
+      .to(".animation-megaphone", {
+        duration: 0.1,
+        scale: 1,
+        ease: "Expo.easeInOut(1, 1)",
+      })
+      .addLabel("megaphone-item5")
+      .to(".animation-megaphone", {
+        duration: 0.1,
+        scale: 1.15,
+        delay: 0.2,
+        ease: "Expo.easeInOut(1, 1)",
+      })
+      .to(".animation-megaphone", {
+        duration: 0.1,
+        scale: 1,
+        ease: "Expo.easeInOut(1, 1)",
+      })
+      .fromTo(
+        ".box",
+        { scale: 0, yPercent: 50, xPercent: 200 },
+        {
+          duration: 1,
+          scale: 2,
+          yPercent: -70,
+          xPercent: 400,
+          opacity: 0,
+          ease: "Power4.in(2, .1)",
+          stagger: 0.4,
+        },
+        "-=1.8"
+      );
     gsap.fromTo(
       ".animation-head",
       {
@@ -478,7 +551,11 @@ class Animation extends Component {
             <img src={`/images/animation/inventory.svg`} />
           </div>
         </div>
-
+        <div className="animation-handbagbroke">
+          <div id="handbagbroke">
+            <img src={`/images/animation/handbag_broke.svg`} />
+          </div>
+        </div>
         <div className="animation-truck">
           <div id="truck">
             <img src={`/images/animation/truck.svg`} />
@@ -515,6 +592,9 @@ class Animation extends Component {
           </div>
         </div>
         <div className="animation-lady">
+          <div className="box">Fart</div> <div className="box">Fart</div>
+          <div className="box">Fart</div> <div className="box">Fart</div>
+          <div className="box">Fart</div>
           <div className="animation-head">
             <div id="head">
               <img src="/images/animation/head.svg" />

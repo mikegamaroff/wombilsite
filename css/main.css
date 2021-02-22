@@ -827,6 +827,24 @@ section#light {
   width: 100%;
   transform: rotate(-20deg);
 }
+
+.animation-handbagbroke {
+  position: absolute;
+  right: 8%;
+  width: 10%;
+  top: 40%;
+  z-index: 1;
+}
+.animation-handbagbroke img {
+  width: 100%;
+}
+.box {
+  width: 30%;
+  height: 30%;
+  background-color: rgb(255, 140, 0);
+  position: absolute;
+  z-index: 5;
+}
 /* Large smaller */
 @media screen and (max-width: 1200px) {
   .mainTitles h2 {
