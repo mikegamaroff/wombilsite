@@ -845,14 +845,21 @@ section#light {
   position: absolute;
   z-index: 5;
 }
+
 .animation-cheerleader {
   position: absolute;
-  width: 23%;
+  width: 20%;
   height: 100%;
   bottom: 0%;
-  right: 17%;
   z-index: 4;
-  display: none;
+}
+
+.animation-cheerleader-left {
+  right: 13%;
+}
+.animation-cheerleader-right {
+  right: 36%;
+  transform: rotateY(180deg);
 }
 .animation-cheerleader-arml {
   position: absolute;
@@ -873,8 +880,7 @@ section#light {
   width: 50%;
   height: 33%;
   left: -10%;
-  bottom: 28%;
-  transform-origin: 96% 83%;
+  bottom: 20%;
 }
 .animation-cheerleader-arml img {
   width: 100%;
@@ -884,9 +890,8 @@ section#light {
   width: 50%;
   height: 33%;
   left: 54%;
-  bottom: 25%;
+  bottom: 18%;
   z-index: 4;
-  transform-origin: 5% 75%;
 }
 .animation-cheerleader-armr img {
   width: 100%;
@@ -896,10 +901,30 @@ section#light {
   width: 35%;
   height: 33%;
   left: 33%;
-  bottom: 25%;
+  bottom: 18%;
   z-index: 4;
 }
 .animation-cheerleader-head img {
+  width: 100%;
+}
+.animation-money {
+  position: absolute;
+  right: 8%;
+  width: 15%;
+  bottom: 0%;
+  z-index: 7;
+}
+.animation-money img {
+  width: 100%;
+}
+.animation-cloud {
+  position: absolute;
+  right: 8%;
+  width: 15%;
+  bottom: -5%;
+  z-index: 7;
+}
+.animation-cloud img {
   width: 100%;
 }
 /* Large smaller */

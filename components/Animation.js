@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { gsap, CSSPlugin, TweenLite, Power4 } from "gsap";
+import { gsap, CSSPlugin } from "gsap";
+
 import Cheerleader from "./Cheerleader";
 gsap.registerPlugin(CSSPlugin);
 
@@ -7,7 +8,7 @@ class Animation extends Component {
   constructor(props) {
     super(props);
   }
-  state = { face: "ok", hand: "r" };
+  state = { face: "ok", hand: "r", cheerleaders: false };
 
   faceChange = (face) => {
     this.setState({ face: face });
@@ -15,10 +16,18 @@ class Animation extends Component {
   handChange = (hand) => {
     this.setState({ hand: hand });
   };
+  removeCheerleaders = () => {
+    this.setState({ cheerleaders: !this.state.cheerleaders });
+  };
+  cheernull = () => {
+    console.log("cheernull");
+  };
   componentDidMount() {
     let tl = gsap.timeline();
+    let tl2 = gsap.timeline();
     let faceChange = this.faceChange;
     let handChange = this.handChange;
+    let removeCheerleaders = this.removeCheerleaders;
     tl.fromTo(
       ".animation-lady",
       {
@@ -543,11 +552,71 @@ class Animation extends Component {
       .to(
         ".animation-head",
         {
-          rotation: 0,
+          rotation: 15,
           duration: 2,
         },
         "cheerleaders"
+      )
+      .to(
+        ".animation-head",
+        {
+          duration: 0,
+          onComplete: removeCheerleaders,
+        },
+        "cheerleaders"
+      )
+      .to(".animation-head", {
+        rotation: 0,
+        duration: 2,
+        onCompleteParams: ["cringe"],
+        onComplete: faceChange,
+      })
+      .to(".animation-head", {
+        rotation: 10,
+        duration: 0.8,
+        onCompleteParams: ["mehd"],
+        onComplete: faceChange,
+      })
+      .fromTo(
+        ".animation-money",
+        { yPercent: -500 },
+        {
+          duration: 1,
+          strength: 40,
+          squash: 3,
+          yPercent: -10,
+          ease: "Bounce.easeOut(500,900)",
+        },
+        "-=.6"
+      )
+      .fromTo(
+        ".animation-cloud",
+        { scaleY: 0, scaleX: 0 },
+        {
+          duration: 0.1,
+          scaleY: 1,
+          scaleX: 1.5,
+        },
+        "-=.6"
+      )
+      .to(
+        ".animation-cloud",
+
+        {
+          duration: 1,
+          scaleY: 0.5,
+          scaleX: 1,
+          opacity: 0,
+          ease: "Power4.easeOut(1,1)",
+        },
+        "-=.5"
+      )
+      .to(
+        ".animation-cloud",
+        { delay: 2, onCompleteParams: ["meh"], onComplete: faceChange },
+        "-=.5"
       );
+
     gsap.fromTo(
       ".animation-head",
       {
@@ -585,6 +654,7 @@ class Animation extends Component {
       ease: "Expo.easeInOut(1, 1)",
       transformOrigin: "90% 90%",
     });
+
     /*
     gsap.to(".animation-forearm", {
       duration: 0.5,
@@ -615,7 +685,28 @@ class Animation extends Component {
   render() {
     return (
       <div className="animation-container">
-        <Cheerleader />
+        {this.state.cheerleaders ? (
+          <>
+            <Cheerleader
+              cheer="animation-cheerleader-right"
+              removeCheerleaders={this.removeCheerleaders}
+            />
+            <Cheerleader
+              cheer="animation-cheerleader-left"
+              removeCheerleaders={this.cheernull}
+            />
+          </>
+        ) : null}
+        <div className="animation-cloud">
+          <div id="cloud">
+            <img src={`/images/animation/cloud.svg`} />
+          </div>
+        </div>
+        <div className="animation-money">
+          <div id="money">
+            <img src={`/images/animation/money.svg`} />
+          </div>
+        </div>
         <div className="animation-inventory">
           <div id="inventory">
             <img src={`/images/animation/inventory.svg`} />

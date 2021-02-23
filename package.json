@@ -11,7 +11,7 @@
     "axios": "^0.19.2",
     "fslightbox-react": "^1.4.9",
     "greensock": "^1.20.2",
-    "gsap": "^3.3.3",
+    "gsap": "file:gsap-bonus.tgz",
     "isomorphic-unfetch": "^3.1.0",
     "mailgun-js": "^0.22.0",
     "next": "^10.0.7",
