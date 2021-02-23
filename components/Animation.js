@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { gsap, CSSPlugin, TweenLite, Power4 } from "gsap";
-
+import Cheerleader from "./Cheerleader";
 gsap.registerPlugin(CSSPlugin);
 
 class Animation extends Component {
@@ -478,6 +478,75 @@ class Animation extends Component {
           stagger: 0.4,
         },
         "-=1.8"
+      )
+      .addLabel("cheerleaders")
+      .to(
+        ".animation-arm_l",
+        {
+          duration: 0.4,
+          rotation: 60,
+          ease: "Power1.easeInOut(1, 1)",
+          transformOrigin: "9% 10%",
+          yPercent: -5,
+        },
+        "cheerleaders"
+      )
+      .to(
+        ".animation-arm_r",
+        {
+          duration: 0.5,
+          rotation: 65,
+          xPercent: 2,
+
+          ease: "Power1.easeInOut(1, 1)",
+          transformOrigin: "13% 20%",
+          onCompleteParams: ["r"],
+          onComplete: handChange,
+        },
+        "cheerleaders"
+      )
+      .to(
+        ".animation-forearm_r",
+        {
+          duration: 0.5,
+          rotation: 90,
+          yPercent: 14,
+          xPercent: -12,
+          ease: "Power1.easeInOut(1, 1)",
+          transformOrigin: "90% 90%",
+          onCompleteParams: ["smile"],
+          onComplete: faceChange,
+        },
+        "cheerleaders"
+      )
+      .to(
+        ".animation-forearm",
+
+        {
+          duration: 1,
+          rotation: 70,
+          ease: "Power1.easeInOut(1, 1)",
+          transformOrigin: "35% 90%",
+        },
+        "cheerleaders"
+      )
+      .to(
+        ".animation-megaphone",
+
+        {
+          scale: 0,
+          duration: 0.3,
+          ease: "Power4.easeInOut(1, 1)",
+        },
+        "cheerleaders"
+      )
+      .to(
+        ".animation-head",
+        {
+          rotation: 0,
+          duration: 2,
+        },
+        "cheerleaders"
       );
     gsap.fromTo(
       ".animation-head",
@@ -546,6 +615,7 @@ class Animation extends Component {
   render() {
     return (
       <div className="animation-container">
+        <Cheerleader />
         <div className="animation-inventory">
           <div id="inventory">
             <img src={`/images/animation/inventory.svg`} />
