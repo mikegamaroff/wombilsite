@@ -611,12 +611,45 @@ class Animation extends Component {
         },
         "-=.5"
       )
-      .to(
+      .to(".animation-cloud", {
+        delay: 1,
+        onCompleteParams: ["meh"],
+        onComplete: faceChange,
+      })
+      .fromTo(
         ".animation-cloud",
-        { delay: 2, onCompleteParams: ["meh"], onComplete: faceChange },
-        "-=.5"
-      );
+        { scaleY: 0, scaleX: 0, opacity: 1 },
+        {
+          duration: 0.1,
+          scaleY: 1.5,
+          scaleX: 2.5,
+          delay: 1,
+        }
+      )
+      .to(".animation-cloud", {
+        duration: 1,
+        scaleY: 0.5,
+        scaleX: 1,
+        opacity: 0,
 
+        ease: "Power4.easeOut(1,1)",
+      })
+      .to(
+        ".animation-money",
+        {
+          duration: 0.5,
+          scale: 0,
+          rotate: 180,
+          ease: "Power.easeIn(1,1)",
+        },
+        "-=1"
+      )
+      .to(".animation-head", {
+        rotation: 0,
+        duration: 0.8,
+        onCompleteParams: ["ok"],
+        onComplete: faceChange,
+      });
     gsap.fromTo(
       ".animation-head",
       {
