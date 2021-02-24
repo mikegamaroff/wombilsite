@@ -3,13 +3,18 @@ import { gsap, CSSPlugin } from "gsap";
 
 import Cheerleader from "./Cheerleader";
 gsap.registerPlugin(CSSPlugin);
-
+let benefitsFromArrayY = [-1800,-1800,-1800,-1800,-1800,-1800,-1800]
+let benefitsFromArrayX = [-600,-400,-200,0,200,400,600]
+/* let benefitsArrayX = [100,200,300,400,500,600,700] */
 class Animation extends Component {
   constructor(props) {
     super(props);
   }
-  state = { face: "ok", rhand: "rfist", lhand: "lhand", cheerleaders: false };
+  state = { face: "ok", rhand: "rfist", lhand: "lhand", cheerleaders: false, ipad: "" };
 
+  ipadChange = (ipad) => {
+    this.setState({ ipad: ipad });
+  };
   faceChange = (face) => {
     this.setState({ face: face });
   };
@@ -22,11 +27,13 @@ class Animation extends Component {
   cheernull = () => {
     console.log("cheernull");
   };
+
   componentDidMount() {
     let tl = gsap.timeline();
     let tl2 = gsap.timeline();
     let faceChange = this.faceChange;
     let handChange = this.handChange;
+    let ipadChange = this.ipadChange
     let removeCheerleaders = this.removeCheerleaders;
     tl.fromTo(
       ".animation-lady",
@@ -41,7 +48,7 @@ class Animation extends Component {
         onComplete: faceChange,
       }
     )
-      /*  .fromTo(
+  .fromTo(
         ".animation-thoughtbubble",
         {
           scaleX: 0,
@@ -503,7 +510,7 @@ class Animation extends Component {
           onComplete: handChange,
         },
         "cheerleaders"
-      ) 
+      )
       .to(
         ".animation-forearm_r",
         {
@@ -554,7 +561,7 @@ class Animation extends Component {
           onComplete: removeCheerleaders,
         },
         "cheerleaders"
-      )*/
+      )
       .to(".animation-head", {
         rotation: 0,
         duration: 2,
@@ -651,7 +658,7 @@ class Animation extends Component {
         ".animation-arm_r",
         {
           duration: 0.4,
-          rotation: 40,
+          rotation: 30,
           xPercent: 2,
 
           ease: "Power1.easeInOut(1, 1)",
@@ -665,7 +672,7 @@ class Animation extends Component {
         ".animation-forearm_r",
         {
           duration: 0.4,
-          rotation: -130,
+          rotation: -120,
 
           ease: "Power1.easeInOut(1, 1)",
           transformOrigin: "90% 90%",
@@ -707,7 +714,69 @@ class Animation extends Component {
           transformOrigin: "40% 90%",
         },
         "grabipad"
-      );
+      ).fromTo(
+        ".benefit",
+        {yPercent: (index, elem) => {
+          return benefitsFromArrayY[index] },
+          xPercent: (index, elem) => {
+            return benefitsFromArrayX[index] }},
+        {duration: 1, yPercent: 0,
+          xPercent: 0,
+        stagger: 0.3, ease: "Power4.easeOut(1, 1)"}, "-=.1").to(".benefit",{duration: .3, stagger: 0.3, opacity: 0, }, "-=2.1 ") .to(
+          ".animation-head",
+          {
+            rotation: 0,
+            duration: 0.4,
+            onCompleteParams: ["elated"],
+            onComplete: faceChange,
+          }
+
+        ).fromTo(
+          ".animation-ipadBig",
+          {
+            opacity: 0
+          }, {
+            opacity: 1,
+            duration: .01
+          }
+        ).addLabel("ipadGrow").to(
+          ".animation-ipadBig",
+          {
+            rotationY: 80,
+            scale: 2,
+            duration:.5,
+            yPercent: -120,
+            xPercent: 80,
+            ease: "Power1.easeIn(1, 1)",
+            onCompleteParams: ["_front"],
+        onComplete: ipadChange,
+          }
+        ).to(
+          ".animation-ipadBig",
+          {
+            rotationY: 0,
+            scale: 3.5,
+
+            duration: 1,
+            ease: "Power4.easeOut(1, 1)",
+          }
+        ).to(
+          ".animation-ipad",
+          {
+            opacity: 0,
+            duration: .1
+
+          }, "ipadGrow",
+        ).to(
+          ".animation-lady",
+
+          {
+            duration: 1,
+            yPercent: 200,
+            ease: "Power1.easeIn(1, 1)",
+
+          },"ipadGrow"
+        )
     gsap.fromTo(
       ".animation-head",
       {
@@ -788,6 +857,11 @@ class Animation extends Component {
             />
           </>
         ) : null}
+ <div className="animation-ipadBig">
+              <div >
+                <img src={`/images/animation/ipad${this.state.ipad}.svg`} />
+              </div>
+            </div>
 
         <div className="animation-cloud">
           <div id="cloud">
@@ -829,6 +903,7 @@ class Animation extends Component {
             <img src={`/images/animation/balloons.svg`} />
           </div>
         </div>
+
         <div className="animation-desk">
           <div id="desk">
             <img src={`/images/animation/desk.svg`} />
@@ -844,6 +919,7 @@ class Animation extends Component {
             <img src={`/images/animation/pointer.svg`} />
           </div>
         </div>
+
         <div className="animation-lady">
           <div className="box">Fart</div> <div className="box">Fart</div>
           <div className="box">Fart</div> <div className="box">Fart</div>
@@ -862,7 +938,13 @@ class Animation extends Component {
                 <img src={`/images/animation/ipad.svg`} />
               </div>
             </div>
+            <div className="benefitsHolder">
+        <div className="benefit"> </div> <div className="benefit"></div>
+        <div className="benefit"> </div> <div className="benefit"></div>
+        <div className="benefit"></div> <div className="benefit"></div>
+        <div className="benefit"></div></div>
             <div className="animation-torso">
+
               <img src="/images/animation/body.svg" />
             </div>
             <div className="animation-arm_l">
