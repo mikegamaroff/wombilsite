@@ -692,7 +692,7 @@ section#light {
 }
 .animation-forearm {
   position: absolute;
-  width: 28%;
+  width: 43%;
   height: 100%;
   /*   background-color: rgba(89, 0, 255, 0.432); */
   bottom: 22%;
@@ -773,6 +773,7 @@ section#light {
   width: 40%;
   top: 55%;
   z-index: 1;
+  display: none;
 }
 .animation-desk img {
   width: 100%;
@@ -822,6 +823,7 @@ section#light {
   right: 30%;
   width: 115%;
   top: -30%;
+  display: none;
 }
 .animation-megaphone img {
   width: 100%;
@@ -922,7 +924,17 @@ section#light {
   right: 8%;
   width: 15%;
   bottom: -5%;
-  z-index: 7;
+  z-index: 4;
+}
+.animation-ipad img {
+  width: 100%;
+}
+.animation-ipad {
+  position: absolute;
+  right: 35%;
+  width: 33%;
+  bottom: 8%;
+  z-index: 2;
 }
 .animation-cloud img {
   width: 100%;

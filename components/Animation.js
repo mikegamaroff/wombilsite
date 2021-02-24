@@ -8,13 +8,13 @@ class Animation extends Component {
   constructor(props) {
     super(props);
   }
-  state = { face: "ok", hand: "r", cheerleaders: false };
+  state = { face: "ok", rhand: "rfist", lhand: "lhand", cheerleaders: false };
 
   faceChange = (face) => {
     this.setState({ face: face });
   };
-  handChange = (hand) => {
-    this.setState({ hand: hand });
+  handChange = (rhand, lhand) => {
+    this.setState({ rhand: rhand, lhand: lhand });
   };
   removeCheerleaders = () => {
     this.setState({ cheerleaders: !this.state.cheerleaders });
@@ -32,7 +32,6 @@ class Animation extends Component {
       ".animation-lady",
       {
         yPercent: 20,
-        /*  delay: 2, */
       },
       {
         duration: 1,
@@ -42,8 +41,7 @@ class Animation extends Component {
         onComplete: faceChange,
       }
     )
-      /*     .pause() */
-      .fromTo(
+      /*  .fromTo(
         ".animation-thoughtbubble",
         {
           scaleX: 0,
@@ -99,7 +97,7 @@ class Animation extends Component {
           scaleX: 1,
           scaleY: 1,
         }
-        /*   "-=.4" */
+
       )
 
       .fromTo(
@@ -135,8 +133,6 @@ class Animation extends Component {
           ease: "Power1.out(.5, .5)",
           delay: 0,
           transformOrigin: "0% 100%",
-          /*         onCompleteParams: ["mehr"],
-          onComplete: faceChange, */
         },
         "-=.2"
       )
@@ -163,7 +159,6 @@ class Animation extends Component {
           duration: 0.7,
           ease: "Power1.inOut(1, 1)",
         }
-        /*     "-=.5" */
       )
       .to(
         ".animation-head",
@@ -191,8 +186,6 @@ class Animation extends Component {
         {
           rotation: 13,
           duration: 1,
-          /*     onCompleteParams: ["sad"],
-          onComplete: faceChange, */
         },
         "-=.5"
       )
@@ -228,7 +221,7 @@ class Animation extends Component {
         {
           rotation: 0,
           duration: 0.5,
-          onCompleteParams: ["rhand"],
+          onCompleteParams: ["rhand", "lhand"],
           onComplete: handChange,
         },
         "-=.9"
@@ -366,7 +359,7 @@ class Animation extends Component {
           xPercent: -3,
           ease: "Power1.easeInOut(1, 1)",
           transformOrigin: "13% 20%",
-          onCompleteParams: ["r"],
+          onCompleteParams: ["rfist", "lhand"],
           onComplete: handChange,
         },
         "-=.1"
@@ -378,9 +371,6 @@ class Animation extends Component {
         },
         {
           scale: 1,
-
-          /*         xPercent: 85,
-        yPercent: -130, */
           duration: 0.3,
           ease: "Elastic.easeInOut(1, 1)",
         },
@@ -509,11 +499,11 @@ class Animation extends Component {
 
           ease: "Power1.easeInOut(1, 1)",
           transformOrigin: "13% 20%",
-          onCompleteParams: ["r"],
+          onCompleteParams: ["rfist", "lhand"],
           onComplete: handChange,
         },
         "cheerleaders"
-      )
+      ) 
       .to(
         ".animation-forearm_r",
         {
@@ -564,7 +554,7 @@ class Animation extends Component {
           onComplete: removeCheerleaders,
         },
         "cheerleaders"
-      )
+      )*/
       .to(".animation-head", {
         rotation: 0,
         duration: 2,
@@ -626,6 +616,7 @@ class Animation extends Component {
           delay: 1,
         }
       )
+      .addLabel("grabipad")
       .to(".animation-cloud", {
         duration: 1,
         scaleY: 0.5,
@@ -634,22 +625,89 @@ class Animation extends Component {
 
         ease: "Power4.easeOut(1,1)",
       })
+
       .to(
         ".animation-money",
         {
-          duration: 0.5,
+          duration: 0.3,
           scale: 0,
           rotate: 180,
           ease: "Power.easeIn(1,1)",
         },
         "-=1"
       )
-      .to(".animation-head", {
-        rotation: 0,
-        duration: 0.8,
-        onCompleteParams: ["ok"],
-        onComplete: faceChange,
-      });
+      .to(
+        ".animation-head",
+        {
+          rotation: 15,
+          duration: 0.4,
+          onCompleteParams: ["happy"],
+          onComplete: faceChange,
+        },
+        "grabipad"
+      )
+
+      .to(
+        ".animation-arm_r",
+        {
+          duration: 0.4,
+          rotation: 40,
+          xPercent: 2,
+
+          ease: "Power1.easeInOut(1, 1)",
+          transformOrigin: "13% 20%",
+          onCompleteParams: ["rfist", "lhand"],
+          onComplete: handChange,
+        },
+        "grabipad"
+      )
+      .to(
+        ".animation-forearm_r",
+        {
+          duration: 0.4,
+          rotation: -130,
+
+          ease: "Power1.easeInOut(1, 1)",
+          transformOrigin: "90% 90%",
+        },
+        "grabipad"
+      )
+      .to(
+        ".animation-arm_l",
+        {
+          duration: 0.4,
+          rotation: 72,
+          yPercent: -3,
+          ease: "Power1.easeInOut(1, 1)",
+          transformOrigin: "9% 10%",
+        },
+        "grabipad"
+      )
+      .to(
+        ".animation-forearm",
+        {
+          duration: 0.4,
+          rotation: 20,
+          xPercent: -2,
+          yPercent: 2,
+          ease: "Expo.easeInOut(1, 1)",
+          transformOrigin: "40% 90%",
+          onCompleteParams: ["rhold", "lhold"],
+          onComplete: handChange,
+        },
+        "grabipad"
+      )
+      .fromTo(
+        ".animation-ipad",
+        { yPercent: 200 },
+        {
+          duration: 0.6,
+          yPercent: 0,
+          ease: "Elastic.easeInOut(1, 1)",
+          transformOrigin: "40% 90%",
+        },
+        "grabipad"
+      );
     gsap.fromTo(
       ".animation-head",
       {
@@ -730,6 +788,7 @@ class Animation extends Component {
             />
           </>
         ) : null}
+
         <div className="animation-cloud">
           <div id="cloud">
             <img src={`/images/animation/cloud.svg`} />
@@ -798,6 +857,11 @@ class Animation extends Component {
             </div>
           </div>
           <div className="animation-body">
+            <div className="animation-ipad">
+              <div id="ipad">
+                <img src={`/images/animation/ipad.svg`} />
+              </div>
+            </div>
             <div className="animation-torso">
               <img src="/images/animation/body.svg" />
             </div>
@@ -806,7 +870,9 @@ class Animation extends Component {
                 <img src="/images/animation/upperarm.svg" />
               </div>
               <div className="animation-forearm">
-                <img src="/images/animation/forearm.svg" />
+                <img
+                  src={`/images/animation/forearm_${this.state.lhand}.svg`}
+                />
               </div>
             </div>
             <div className="animation-arm_r">
@@ -819,7 +885,9 @@ class Animation extends Component {
                     <img src={`/images/animation/megaphone.svg`} />
                   </div>
                 </div>
-                <img src={`/images/animation/forearm_${this.state.hand}.svg`} />
+                <img
+                  src={`/images/animation/forearm_${this.state.rhand}.svg`}
+                />
               </div>
             </div>
           </div>
