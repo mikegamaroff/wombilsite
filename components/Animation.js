@@ -3,14 +3,23 @@ import { gsap, CSSPlugin } from "gsap";
 
 import Cheerleader from "./Cheerleader";
 gsap.registerPlugin(CSSPlugin);
-let benefitsFromArrayY = [-1800,-1800,-1800,-1800,-1800,-1800,-1800]
-let benefitsFromArrayX = [-600,-400,-200,0,200,400,600]
+let benefitsFromArrayY = [-1800, -1800, -1800, -1800, -1800, -1800, -1800];
+let benefitsFromArrayX = [-600, -400, -200, 0, 200, 400, 600];
 /* let benefitsArrayX = [100,200,300,400,500,600,700] */
+
+let tl = gsap.timeline();
+let tl2 = gsap.timeline();
 class Animation extends Component {
   constructor(props) {
     super(props);
   }
-  state = { face: "ok", rhand: "rfist", lhand: "lhand", cheerleaders: false, ipad: "" };
+  state = {
+    face: "ok",
+    rhand: "rfist",
+    lhand: "lhand",
+    cheerleaders: false,
+    ipad: "",
+  };
 
   ipadChange = (ipad) => {
     this.setState({ ipad: ipad });
@@ -27,13 +36,16 @@ class Animation extends Component {
   cheernull = () => {
     console.log("cheernull");
   };
-
+  pause = () => {
+    tl.pause();
+  };
+  play = () => {
+    tl.play("grabipad");
+  };
   componentDidMount() {
-    let tl = gsap.timeline();
-    let tl2 = gsap.timeline();
     let faceChange = this.faceChange;
     let handChange = this.handChange;
-    let ipadChange = this.ipadChange
+    let ipadChange = this.ipadChange;
     let removeCheerleaders = this.removeCheerleaders;
     tl.fromTo(
       ".animation-lady",
@@ -48,7 +60,8 @@ class Animation extends Component {
         onComplete: faceChange,
       }
     )
-  .fromTo(
+
+      .fromTo(
         ".animation-thoughtbubble",
         {
           scaleX: 0,
@@ -104,7 +117,6 @@ class Animation extends Component {
           scaleX: 1,
           scaleY: 1,
         }
-
       )
 
       .fromTo(
@@ -208,11 +220,11 @@ class Animation extends Component {
         },
         "-=.5"
       )
-      .to(".animation-lady", {
+      /*       .to(".animation-lady", {
         duration: 0.5,
         yPercent: 5,
         ease: "Power1.easeOut(1, 1)",
-      })
+      }) */
 
       .to(
         ".animation-desk",
@@ -673,7 +685,7 @@ class Animation extends Component {
         {
           duration: 0.4,
           rotation: -120,
-
+          yPercent: -5,
           ease: "Power1.easeInOut(1, 1)",
           transformOrigin: "90% 90%",
         },
@@ -714,69 +726,116 @@ class Animation extends Component {
           transformOrigin: "40% 90%",
         },
         "grabipad"
-      ).fromTo(
+      )
+      .fromTo(
         ".benefit",
-        {yPercent: (index, elem) => {
-          return benefitsFromArrayY[index] },
+        {
+          yPercent: (index, elem) => {
+            return benefitsFromArrayY[index];
+          },
           xPercent: (index, elem) => {
-            return benefitsFromArrayX[index] }},
-        {duration: 1, yPercent: 0,
+            return benefitsFromArrayX[index];
+          },
+        },
+        {
+          duration: 1,
+          yPercent: 0,
           xPercent: 0,
-        stagger: 0.3, ease: "Power4.easeOut(1, 1)"}, "-=.1").to(".benefit",{duration: .3, stagger: 0.3, opacity: 0, }, "-=2.1 ") .to(
-          ".animation-head",
-          {
-            rotation: 0,
-            duration: 0.4,
-            onCompleteParams: ["elated"],
-            onComplete: faceChange,
-          }
+          stagger: 0.3,
+          ease: "Power4.easeOut(1, 1)",
+        },
+        "-=.1"
+      )
+      .to(".benefit", { duration: 0.3, stagger: 0.3, opacity: 0 }, "-=2.1 ")
+      .to(".animation-head", {
+        rotation: 0,
+        duration: 0.4,
+        onCompleteParams: ["elated"],
+        onComplete: faceChange,
+      })
+      .fromTo(
+        ".animation-ipadBig",
+        {
+          opacity: 0,
+        },
+        {
+          opacity: 1,
+          duration: 0.01,
+        }
+      )
+      .addLabel("ipadGrow")
+      .to(".animation-ipadBig", {
+        rotationY: 80,
+        scale: 2,
+        duration: 0.5,
+        yPercent: -80,
+        xPercent: 80,
+        ease: "Power1.easeIn(1, 1)",
+      })
+      .to(".animation-lady", {
+        duration: 0.01,
+        css: { zIndex: 8 },
+      })
+      .to(".animation-ipadBig", {
+        duration: 0.01,
+        css: { display: "none" },
+      })
+      .fromTo(
+        ".animation-laptop",
+        { rotationY: 90 },
+        {
+          rotationY: 0,
+          xPercent: -40,
+          duration: 1,
+          scale: 1.2,
+          ease: "Power4.easeOut(1, 1)",
+          transformOrigin: "150% 100%",
+        }
+      )
+      .to(
+        ".animation-ipad",
+        {
+          opacity: 0,
+          duration: 0.1,
+        },
+        "ipadGrow"
+      )
+      .to(
+        ".animation-lady",
+        {
+          duration: 1,
+          yPercent: 40,
+          xPercent: -15,
 
-        ).fromTo(
-          ".animation-ipadBig",
-          {
-            opacity: 0
-          }, {
-            opacity: 1,
-            duration: .01
-          }
-        ).addLabel("ipadGrow").to(
-          ".animation-ipadBig",
-          {
-            rotationY: 80,
-            scale: 2,
-            duration:.5,
-            yPercent: -120,
-            xPercent: 80,
-            ease: "Power1.easeIn(1, 1)",
-            onCompleteParams: ["_front"],
-        onComplete: ipadChange,
-          }
-        ).to(
-          ".animation-ipadBig",
-          {
-            rotationY: 0,
-            scale: 3.5,
+          ease: "Power1.easeInOut(1, 1)",
+          onCompleteParams: ["happyUp"],
+          onComplete: faceChange,
+        },
+        "ipadGrow"
+      )
+      .to(
+        ".animation-head",
 
-            duration: 1,
-            ease: "Power4.easeOut(1, 1)",
-          }
-        ).to(
-          ".animation-ipad",
-          {
-            opacity: 0,
-            duration: .1
+        {
+          duration: 1,
+          rotation: -15,
+          ease: "Power1.easeInOut(1, 1)",
+          transformOrigin: "50% 90%",
+        },
+        "ipadGrow"
+      )
+      .fromTo(
+        ".animation-store",
+        { yPercent: -300 },
+        {
+          yPercent: 0,
+          duration: 1,
+          delay: 1,
+          ease: "Power4.easeInOut(1, 1)",
+        },
+        "ipadGrow"
+      );
 
-          }, "ipadGrow",
-        ).to(
-          ".animation-lady",
-
-          {
-            duration: 1,
-            yPercent: 200,
-            ease: "Power1.easeIn(1, 1)",
-
-          },"ipadGrow"
-        )
     gsap.fromTo(
       ".animation-head",
       {
@@ -857,12 +916,27 @@ class Animation extends Component {
             />
           </>
         ) : null}
- <div className="animation-ipadBig">
-              <div >
-                <img src={`/images/animation/ipad${this.state.ipad}.svg`} />
-              </div>
-            </div>
-
+        <div className="animation-ipadBig">
+          <div>
+            <img src={`/images/animation/ipad${this.state.ipad}.svg`} />
+          </div>
+        </div>
+        <div className="animation-store">
+          <div>
+            <img src={`/images/animation/store.svg`} />
+          </div>
+        </div>
+        <div className="animation-laptop">
+          <div>
+            <img src={`/images/animation/laptop.svg`} />
+          </div>
+        </div>
+        <div className="buttonMovie" onClick={this.pause}>
+          Pause
+        </div>
+        <div className="buttonMovie" onClick={this.play}>
+          Go
+        </div>
         <div className="animation-cloud">
           <div id="cloud">
             <img src={`/images/animation/cloud.svg`} />
@@ -939,12 +1013,12 @@ class Animation extends Component {
               </div>
             </div>
             <div className="benefitsHolder">
-        <div className="benefit"> </div> <div className="benefit"></div>
-        <div className="benefit"> </div> <div className="benefit"></div>
-        <div className="benefit"></div> <div className="benefit"></div>
-        <div className="benefit"></div></div>
+              <div className="benefit"> </div> <div className="benefit"></div>
+              <div className="benefit"> </div> <div className="benefit"></div>
+              <div className="benefit"></div> <div className="benefit"></div>
+              <div className="benefit"></div>
+            </div>
             <div className="animation-torso">
-
               <img src="/images/animation/body.svg" />
             </div>
             <div className="animation-arm_l">

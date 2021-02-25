@@ -194,6 +194,7 @@ class Home extends Component {
               <div className="headerImage">
                 <img src="/images/mainLogo.svg" />
               </div>
+
               <div className="mainTitles">
                 <h2
                   id="color1"
