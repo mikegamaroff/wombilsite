@@ -5,6 +5,8 @@ import Cheerleader from "./Cheerleader";
 gsap.registerPlugin(CSSPlugin);
 let benefitsFromArrayY = [-1800, -1800, -1800, -1800, -1800, -1800, -1800];
 let benefitsFromArrayX = [-600, -400, -200, 0, 200, 400, 600];
+let marketingItemFromArrayY = [-300, -200, -400, -300, -300];
+let marketingItemFromArrayX = [-250, -150, 100, -40, 150];
 /* let benefitsArrayX = [100,200,300,400,500,600,700] */
 
 let tl = gsap.timeline();
@@ -47,20 +49,76 @@ class Animation extends Component {
     let handChange = this.handChange;
     let ipadChange = this.ipadChange;
     let removeCheerleaders = this.removeCheerleaders;
-    tl.fromTo(
-      ".animation-lady",
-      {
-        yPercent: 20,
-      },
-      {
-        duration: 1,
-        yPercent: 0,
-        ease: "Power1.easeOut(1, 1)",
-        onCompleteParams: ["meh"],
-        onComplete: faceChange,
-      }
-    )
+    let textChange = this.props.textChange;
 
+    tl.addLabel("text1_thinkingofselling")
+      .fromTo(
+        ".animation-lady",
+        {
+          yPercent: 20,
+        },
+        {
+          duration: 1,
+          yPercent: 0,
+          ease: "Power1.easeOut(1, 1)",
+          onCompleteParams: ["meh"],
+          onComplete: faceChange,
+        }
+      )
+      .to(
+        ".animation-arm_l",
+        {
+          duration: 1,
+          rotation: -20,
+          ease: "Power1.easeInOut(1, 1)",
+          transformOrigin: "9% 10%",
+        },
+        "text1_thinkingofselling"
+      )
+      .to(
+        ".animation-forearm",
+        {
+          duration: 1,
+          delay: 0.5,
+          rotation: 13,
+          ease: "Expo.easeInOut(1, 1)",
+          transformOrigin: "40% 90%",
+        },
+        "text1_thinkingofselling"
+      )
+      .to(
+        ".animation-arm_r",
+        {
+          duration: 1,
+          rotation: 55,
+          ease: "Power1.easeInOut(1, 1)",
+          transformOrigin: "13% 20%",
+        },
+        "text1_thinkingofselling"
+      )
+      .to(
+        ".animation-forearm_r",
+        {
+          duration: 1,
+          rotation: -120,
+          ease: "Expo.easeInOut(1, 1)",
+          transformOrigin: "90% 90%",
+        },
+        "text1_thinkingofselling"
+      )
+      .fromTo(
+        ".animation-head",
+        {
+          rotation: 10,
+        },
+        {
+          duration: 1,
+          rotation: 0,
+          ease: "Power1.easeInOut(1, 1)",
+          transformOrigin: "50% 90%",
+        },
+        "text1_thinkingofselling"
+      )
       .fromTo(
         ".animation-thoughtbubble",
         {
@@ -130,8 +188,9 @@ class Animation extends Component {
           scaleY: 1,
           duration: 0.5,
         },
-        "+=2"
+        "+=.5"
       )
+
       .to(
         ".animation-handbag",
         {
@@ -168,6 +227,12 @@ class Animation extends Component {
         },
         "-=.5"
       )
+      // TEXT CHANGE
+      .addLabel("text2_maybeAlreadyAre")
+      .to(".textChanger", {
+        duration: 0,
+        onComplete: textChange,
+      })
       .fromTo(
         ".animation-desk",
         {
@@ -175,7 +240,8 @@ class Animation extends Component {
         },
         {
           yPercent: 0,
-          duration: 0.7,
+          duration: 1,
+
           ease: "Power1.inOut(1, 1)",
         }
       )
@@ -188,7 +254,6 @@ class Animation extends Component {
       )
       .to(
         ".animation-arm_l",
-
         {
           duration: 0.3,
           rotation: 40,
@@ -210,7 +275,6 @@ class Animation extends Component {
       )
       .to(
         ".animation-forearm",
-
         {
           duration: 2,
           rotation: 50,
@@ -220,31 +284,85 @@ class Animation extends Component {
         },
         "-=.5"
       )
-      /*       .to(".animation-lady", {
-        duration: 0.5,
-        yPercent: 5,
-        ease: "Power1.easeOut(1, 1)",
-      }) */
+      // TEXT CHANGE
+      .addLabel("text3_byNowYouRealize")
+      .to(".textChanger", {
+        duration: 0,
 
+        onComplete: textChange,
+      })
+
+      .to(".textChanger", {
+        delay: 3,
+
+        onComplete: textChange,
+      })
+      .addLabel("text4_thanSimplySetting")
+      .fromTo(
+        ".animation-sign",
+        {
+          rotate: -180,
+          /*     yPercent: -300, */
+        },
+        {
+          rotate: 0,
+          delay: 3,
+          /*   yPercent: 0, */
+          duration: 1,
+          transformOrigin: "50% 0%",
+          ease: "Elastic.easeOut(1, 1)",
+        },
+        "text4_thanSimplySetting"
+      )
+
+      .to(
+        ".animation-head",
+        {
+          rotation: 0,
+          duration: 1,
+          delay: 0,
+          ease: "Power1.easeInOut(1, 1)",
+          onCompleteParams: ["meh"],
+          onComplete: faceChange,
+        },
+        "text4_thanSimplySetting",
+        "=-2"
+      )
       .to(
         ".animation-desk",
         {
           duration: 0.5,
           yPercent: 100,
+          delay: 3,
           ease: "Power1.easeInOut(1, 1)",
+        },
+        "-=.5"
+      ) // TEXT CHANGE
+      .addLabel("text5_whatabouteverythingelse")
+      .to(
+        ".textChanger",
+        {
+          duration: 0,
+          onComplete: textChange,
         },
         "-=.5"
       )
       .to(
-        ".animation-head",
+        ".animation-sign",
         {
-          rotation: 0,
-          duration: 0.5,
-          onCompleteParams: ["rhand", "lhand"],
-          onComplete: handChange,
+          yPercent: -300,
+          duration: 1,
+          transformOrigin: "50% 0%",
+          ease: "Power4.easeIn(1, 1)",
         },
-        "-=.9"
+        "-=1"
       )
+      .to(".animation-head", {
+        rotation: 0,
+        duration: 0.5,
+        onCompleteParams: ["rhand", "lhand"],
+        onComplete: handChange,
+      })
       .to(
         ".animation-forearm_r",
         {
@@ -257,11 +375,12 @@ class Animation extends Component {
           onCompleteParams: ["surprise"],
           onComplete: faceChange,
         },
-        "-=1"
+        "text5_whatabouteverythingelse"
       )
       .fromTo(
         ".animation-inventory",
         {
+          scale: 1,
           opacity: 0,
           yPercent: 20,
         },
@@ -316,6 +435,7 @@ class Animation extends Component {
       .fromTo(
         ".animation-truck",
         {
+          scale: 1,
           opacity: 0,
           yPercent: 20,
         },
@@ -355,7 +475,6 @@ class Animation extends Component {
         duration: 0.5,
         opacity: 0,
         yPercent: -80,
-        delay: 0.5,
         ease: "Expo.easeIn(1, 1)",
       })
       .to(".animation-forearm_r", {
@@ -363,13 +482,17 @@ class Animation extends Component {
         rotation: 10,
         yPercent: 12,
         xPercent: 3,
-        delay: 1,
         ease: "Power1.easeInOut(1, 1)",
         transformOrigin: "90% 90%",
         onCompleteParams: ["shout"],
         onComplete: faceChange,
       })
-      .addLabel("megaphoneraise")
+      // TEXT CHANGE
+      .addLabel("text6_orTheFullTimeJob")
+      .to(".textChanger", {
+        duration: 0,
+        onComplete: textChange,
+      })
       .to(
         ".animation-arm_r",
         {
@@ -401,7 +524,7 @@ class Animation extends Component {
           rotation: -10,
           duration: 2,
         },
-        "megaphoneraise"
+        "text6_orTheFullTimeJob"
       )
       .to(
         ".animation-arm_l",
@@ -412,7 +535,7 @@ class Animation extends Component {
           transformOrigin: "9% 10%",
           yPercent: 1,
         },
-        "megaphoneraise"
+        "text6_orTheFullTimeJob"
       )
       .to(
         ".animation-forearm",
@@ -422,7 +545,7 @@ class Animation extends Component {
           ease: "Expo.easeInOut(1, 1)",
           transformOrigin: "40% 90%",
         },
-        "megaphoneraise"
+        "text6_orTheFullTimeJob"
       )
       .addLabel("megaphone-item1")
       .to(".animation-megaphone", {
@@ -497,7 +620,12 @@ class Animation extends Component {
         },
         "-=1.8"
       )
-      .addLabel("cheerleaders")
+      // TEXT CHANGE
+      .addLabel("text7_orMakingSureOneTimeCustomers")
+      .to(".textChanger", {
+        duration: 0,
+        onComplete: textChange,
+      })
       .to(
         ".animation-arm_l",
         {
@@ -507,7 +635,7 @@ class Animation extends Component {
           transformOrigin: "9% 10%",
           yPercent: -5,
         },
-        "cheerleaders"
+        "text7_orMakingSureOneTimeCustomers"
       )
       .to(
         ".animation-arm_r",
@@ -521,7 +649,7 @@ class Animation extends Component {
           onCompleteParams: ["rfist", "lhand"],
           onComplete: handChange,
         },
-        "cheerleaders"
+        "text7_orMakingSureOneTimeCustomers"
       )
       .to(
         ".animation-forearm_r",
@@ -535,7 +663,7 @@ class Animation extends Component {
           onCompleteParams: ["smile"],
           onComplete: faceChange,
         },
-        "cheerleaders"
+        "text7_orMakingSureOneTimeCustomers"
       )
       .to(
         ".animation-forearm",
@@ -546,7 +674,7 @@ class Animation extends Component {
           ease: "Power1.easeInOut(1, 1)",
           transformOrigin: "35% 90%",
         },
-        "cheerleaders"
+        "text7_orMakingSureOneTimeCustomers"
       )
       .to(
         ".animation-megaphone",
@@ -556,7 +684,7 @@ class Animation extends Component {
           duration: 0.3,
           ease: "Power4.easeInOut(1, 1)",
         },
-        "cheerleaders"
+        "text7_orMakingSureOneTimeCustomers"
       )
       .to(
         ".animation-head",
@@ -564,15 +692,16 @@ class Animation extends Component {
           rotation: 15,
           duration: 2,
         },
-        "cheerleaders"
+        "text7_orMakingSureOneTimeCustomers"
       )
+
       .to(
         ".animation-head",
         {
           duration: 0,
           onComplete: removeCheerleaders,
         },
-        "cheerleaders"
+        "text7_orMakingSureOneTimeCustomers"
       )
       .to(".animation-head", {
         rotation: 0,
@@ -586,6 +715,16 @@ class Animation extends Component {
         onCompleteParams: ["mehd"],
         onComplete: faceChange,
       })
+      // TEXT CHANGE
+      .addLabel("text8_soundsExpensive")
+      .to(
+        ".textChanger",
+        {
+          duration: 0,
+          onComplete: textChange,
+        },
+        "-=1"
+      )
       .fromTo(
         ".animation-money",
         { yPercent: -500 },
@@ -644,7 +783,16 @@ class Animation extends Component {
 
         ease: "Power4.easeOut(1,1)",
       })
-
+      // TEXT CHANGE
+      .addLabel("text9_wombilTurnkey")
+      .to(
+        ".textChanger",
+        {
+          duration: 0,
+          onComplete: textChange,
+        },
+        "-=1"
+      )
       .to(
         ".animation-money",
         {
@@ -753,6 +901,30 @@ class Animation extends Component {
         onCompleteParams: ["elated"],
         onComplete: faceChange,
       })
+      /////// BILL NOTE
+      .addLabel("fallingBill")
+      .fromTo(
+        ".animation-bill",
+        { rotate: -50 },
+        {
+          rotate: 50,
+          duration: 1,
+          repeat: -1,
+          yoyo: true,
+          ease: "Power1.easeInOut(1, 1)",
+          transformOrigin: "0% -50%",
+        },
+        "fallingBill"
+      )
+      .fromTo(
+        ".animation-bill",
+        { yPercent: -250 },
+        {
+          yPercent: 800,
+          duration: 5,
+        },
+        "fallingBill"
+      )
       .fromTo(
         ".animation-ipadBig",
         {
@@ -760,9 +932,27 @@ class Animation extends Component {
         },
         {
           opacity: 1,
+          delay: 3,
           duration: 0.01,
-        }
+        },
+        "fallingBill"
       )
+      // TEXT CHANGE
+      .addLabel("text10_lowMonthlyFee")
+      .to(
+        ".textChanger",
+        {
+          duration: 0,
+          onComplete: textChange,
+        },
+        "-=3"
+      )
+      .to(".pause", {
+        duration: 3,
+      })
+      .to(".itemLabel", {
+        css: { display: "none" },
+      })
       .addLabel("ipadGrow")
       .to(".animation-ipadBig", {
         rotationY: 80,
@@ -770,6 +960,7 @@ class Animation extends Component {
         duration: 0.5,
         yPercent: -80,
         xPercent: 80,
+
         ease: "Power1.easeIn(1, 1)",
       })
       .to(".animation-lady", {
@@ -785,11 +976,11 @@ class Animation extends Component {
         { rotationY: 90 },
         {
           rotationY: 0,
-          xPercent: -40,
+
           duration: 1,
-          scale: 1.2,
+          scale: 1,
           ease: "Power4.easeOut(1, 1)",
-          transformOrigin: "150% 100%",
+          transformOrigin: "50% 100%",
         }
       )
       .to(
@@ -824,55 +1015,255 @@ class Animation extends Component {
         },
         "ipadGrow"
       )
+      .addLabel("text11_beautifullyBrandedStore")
+      .to(
+        ".textChanger",
+        {
+          duration: 0,
+          onComplete: textChange,
+        },
+        "-=1"
+      )
       .fromTo(
         ".animation-store",
-        { yPercent: -300 },
+        { scale: 0 },
         {
-          yPercent: 0,
-          duration: 1,
-          delay: 1,
-          ease: "Power4.easeInOut(1, 1)",
+          scale: 1,
+          duration: 0.6,
+          delay: 0.6,
+          ease: "Elastic.easeOut(1, 1)",
         },
         "ipadGrow"
-      );
+      )
+      .to(".animation-store", {
+        scaleY: 0,
+        duration: 0.3,
+        delay: 3,
+        ease: "Power4.easeOut(1, 1)",
+      })
+      .fromTo(
+        ".animation-inventory",
+        { scale: 0, opacity: 0 },
+        {
+          scale: 1,
+          opacity: 1,
+          xPercent: -35,
+          yPercent: 0,
+          duration: 0.5,
+          ease: "Elastic.easeOut(1, 1)",
+        },
+        "-=.3"
+      )
+      .to(".animation-inventory", {
+        scaleY: 0,
+        duration: 0.3,
+        delay: 1,
+        ease: "Power4.easeOut(1, 1)",
+      })
+      .fromTo(
+        ".animation-truck",
+        { scale: 0.5, opacity: 0, xPercent: 0 },
+        {
+          scale: 1,
+          opacity: 1,
+          xPercent: -40,
+          yPercent: 30,
+          duration: 0.5,
+          ease: "Elastic.easeOut(1, 1)",
+          transformOrigin: "150% 220%",
+        },
+        "-=.3"
+      )
+      .to(".animation-truck", {
+        xPercent: -100,
+        opacity: 0,
+        duration: 0.3,
+        delay: 1,
+        ease: "Power4.easeIn(1, 1)",
+      })
+      .fromTo(
+        ".package",
+        { scale: 0, rotation: -20 },
+        {
+          duration: 0.7,
+          rotation: 0,
+          scale: 1,
+          ease: "Elastic.easeOut(1, 1)",
+          stagger: 0.1,
+        }
+      )
+      .to(
+        ".package",
 
-    gsap.fromTo(
-      ".animation-head",
-      {
-        rotation: 10,
-      },
-      {
-        duration: 1,
-        rotation: 0,
-        ease: "Power1.easeInOut(1, 1)",
-        transformOrigin: "50% 90%",
-      }
-    );
-    gsap.to(".animation-arm_l", {
-      duration: 1,
-      rotation: -20,
-      ease: "Power1.easeInOut(1, 1)",
-      transformOrigin: "9% 10%",
-    });
-    gsap.to(".animation-forearm", {
-      duration: 1,
-      delay: 0.5,
-      rotation: 13,
-      ease: "Expo.easeInOut(1, 1)",
-      transformOrigin: "40% 90%",
-    });
-    gsap.to(".animation-arm_r", {
-      duration: 1,
-      rotation: 55,
-      ease: "Power1.easeInOut(1, 1)",
-      transformOrigin: "13% 20%",
-    });
-    gsap.to(".animation-forearm_r", {
-      duration: 1,
-      rotation: -120,
-      ease: "Expo.easeInOut(1, 1)",
-      transformOrigin: "90% 90%",
-    });
+        {
+          duration: 0.5,
+          scale: 0,
+          rotation: 20,
+          delay: 1,
+          ease: "Power4.easeIn(2, .1)",
+          stagger: 0.1,
+        }
+      )
+      .fromTo(
+        ".dollar",
+        { scale: 0, rotation: -30 },
+        {
+          duration: 0.5,
+          rotation: 0,
+          scale: 1,
+          ease: "Elastic.easeOut(1, 1)",
+          stagger: 0.1,
+        },
+        "-=.8"
+      )
+      .to(
+        ".dollar",
+
+        {
+          duration: 0.5,
+          scale: 0,
+          rotation: 20,
+          delay: 1,
+          ease: "Power4.easeIn(2, .1)",
+          stagger: 0.1,
+        }
+      )
+      .fromTo(
+        ".marketing-item",
+        {
+          yPercent: -40,
+          xPercent: 0,
+          scale: 0,
+        },
+        {
+          duration: 1,
+          yPercent: (index, elem) => {
+            return marketingItemFromArrayY[index];
+          },
+          xPercent: (index, elem) => {
+            return marketingItemFromArrayX[index];
+          },
+          scale: 1,
+          stagger: 0.2,
+          ease: "Elastic.easeOut(1, 1)",
+        },
+        "-=1"
+      )
+      .fromTo(
+        ".marketing-measure",
+        {
+          scale: 0,
+        },
+        {
+          duration: 0.6,
+          scale: 1,
+          ease: "Elastic.easeOut(1, 1)",
+        },
+        "-=.5"
+      )
+      .addLabel("endscene", "+=2")
+      .to(
+        ".marketing-item",
+        {
+          xPercent: 600,
+          duration: 1,
+          scale: 1,
+          stagger: 0.2,
+          ease: "Power3.easeIn(1, 1)",
+        },
+        "endscene"
+      )
+      .to(
+        ".animation-laptop",
+        {
+          yPercent: 600,
+          duration: 1,
+          scale: 1,
+          ease: "Power3.easeIn(1, 1)",
+        },
+        "endscene"
+      )
+      .to(
+        ".marketing-measure",
+        {
+          yPercent: 600,
+          duration: 1,
+          scale: 1,
+          ease: "Power3.easeIn(1, 1)",
+        },
+        "endscene"
+      )
+      .to(
+        ".animation-lady",
+        {
+          duration: 1.3,
+          yPercent: 0,
+          xPercent: -15,
+
+          ease: "Power1.easeInOut(1, 1)",
+          onCompleteParams: ["happyUp"],
+          onComplete: faceChange,
+        },
+        "endscene"
+      )
+      .to(
+        ".animation-head",
+
+        {
+          duration: 1,
+          rotation: 0,
+          ease: "Power1.easeInOut(1, 1)",
+          transformOrigin: "50% 90%",
+        },
+        "endscene"
+      )
+      .to(
+        ".animation-arm_r",
+        {
+          duration: 1,
+          rotation: 40,
+          ease: "Power1.easeInOut(1, 1)",
+          transformOrigin: "13% 20%",
+        },
+        "endscene"
+      )
+      .to(
+        ".animation-forearm_r",
+        {
+          duration: 1,
+          rotation: 20,
+          xPercent: 10,
+          yPercent: 10,
+          ease: "Expo.easeInOut(1, 1)",
+          transformOrigin: "90% 90%",
+        },
+        "endscene"
+      )
+      .to(
+        ".animation-arm_l",
+        {
+          duration: 0.4,
+          rotation: 20,
+          yPercent: -3,
+          ease: "Power1.easeInOut(1, 1)",
+          transformOrigin: "9% 10%",
+        },
+        "endscene"
+      )
+      .to(
+        ".animation-forearm",
+        {
+          duration: 0.4,
+          rotation: 120,
+          xPercent: -19,
+          yPercent: -5,
+          ease: "Expo.easeInOut(1, 1)",
+          transformOrigin: "40% 90%",
+          onCompleteParams: ["rhand", "lhand"],
+          onComplete: handChange,
+        },
+        "endscene"
+      );
 
     /*
     gsap.to(".animation-forearm", {
@@ -916,6 +1307,85 @@ class Animation extends Component {
             />
           </>
         ) : null}
+        <div className="animation-marketing">
+          <div className="marketing-chat marketing-item">
+            <img src={`/images/animation/marketing/chat.svg`} />
+          </div>
+          <div className="marketing-fb marketing-item">
+            <img src={`/images/animation/marketing/fb.svg`} />
+          </div>
+          <div className="marketing-jet marketing-item">
+            <img src={`/images/animation/marketing/jet.svg`} />
+          </div>
+          <div className="marketing-measure">
+            <img src={`/images/animation/marketing/measure.svg`} />
+          </div>
+          <div className="marketing-search marketing-item">
+            <img src={`/images/animation/marketing/search.svg`} />
+          </div>
+          <div className="marketing-twitter marketing-item">
+            <img src={`/images/animation/marketing/twitter.svg`} />
+          </div>
+        </div>
+        <div className="animation-dollars">
+          <div className="dollar">
+            <img src={`/images/animation/dollar.svg`} />
+          </div>
+          <div className="dollar">
+            <img src={`/images/animation/dollar.svg`} />
+          </div>
+          <div className="dollar">
+            <img src={`/images/animation/dollar.svg`} />
+          </div>
+          <div className="dollar">
+            <img src={`/images/animation/dollar.svg`} />
+          </div>
+          <div className="dollar">
+            <img src={`/images/animation/dollar.svg`} />
+          </div>
+          <div className="dollar">
+            <img src={`/images/animation/dollar.svg`} />
+          </div>
+          <div className="dollar">
+            <img src={`/images/animation/dollar.svg`} />
+          </div>
+          <div className="dollar">
+            <img src={`/images/animation/dollar.svg`} />
+          </div>
+          <div className="dollar">
+            <img src={`/images/animation/dollar.svg`} />
+          </div>
+          <div className="dollar">
+            <img src={`/images/animation/dollar.svg`} />
+          </div>
+        </div>
+        <div className="animation-packagelabels">
+          <div className="package">
+            <img src={`/images/animation/package.svg`} />
+          </div>
+          <div className="package">
+            <img src={`/images/animation/package.svg`} />
+          </div>
+
+          <div className="package">
+            <img src={`/images/animation/package.svg`} />
+          </div>
+          <div className="package">
+            <img src={`/images/animation/package.svg`} />
+          </div>
+          <div className="package">
+            <img src={`/images/animation/package.svg`} />
+          </div>
+          <div className="package">
+            <img src={`/images/animation/package.svg`} />
+          </div>
+          <div className="package">
+            <img src={`/images/animation/package.svg`} />
+          </div>
+          <div className="package">
+            <img src={`/images/animation/package.svg`} />
+          </div>
+        </div>
         <div className="animation-ipadBig">
           <div>
             <img src={`/images/animation/ipad${this.state.ipad}.svg`} />
@@ -937,6 +1407,11 @@ class Animation extends Component {
         <div className="buttonMovie" onClick={this.play}>
           Go
         </div>
+        <div className="animation-sign">
+          <div id="sign">
+            <img src={`/images/animation/sign.svg`} />
+          </div>
+        </div>
         <div className="animation-cloud">
           <div id="cloud">
             <img src={`/images/animation/cloud.svg`} />
@@ -947,22 +1422,32 @@ class Animation extends Component {
             <img src={`/images/animation/money.svg`} />
           </div>
         </div>
+        <div className="animation-bill">
+          <div id="bill">
+            <img src={`/images/animation/bill.svg`} />
+          </div>
+        </div>
         <div className="animation-inventory">
+          <div className="itemLabel">Inventory Management</div>
           <div id="inventory">
             <img src={`/images/animation/inventory.svg`} />
           </div>
         </div>
         <div className="animation-handbagbroke">
+          <div className="itemLabel">Returns</div>
           <div id="handbagbroke">
             <img src={`/images/animation/handbag_broke.svg`} />
           </div>
         </div>
+
         <div className="animation-truck">
+          <div className="itemLabel">Shipping</div>
           <div id="truck">
             <img src={`/images/animation/truck.svg`} />
           </div>
         </div>
         <div className="animation-50percent">
+          <div className="itemLabel">Discounting</div>
           <div id="50percent">
             <img src={`/images/animation/50percent.svg`} />
           </div>
@@ -973,6 +1458,7 @@ class Animation extends Component {
           </div>
         </div>
         <div className="animation-balloons">
+          <div className="itemLabel">Promotions</div>
           <div id="balloons">
             <img src={`/images/animation/balloons.svg`} />
           </div>

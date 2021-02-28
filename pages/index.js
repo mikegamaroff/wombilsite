@@ -5,6 +5,8 @@ import fetch from "isomorphic-unfetch";
 import { gsap, CSSPlugin, TweenLite, Power4 } from "gsap";
 import Head from "next/head";
 import Animation from "../components/Animation";
+import HeaderTextAnimation from "../components/HeaderTextAnimation";
+
 gsap.registerPlugin(CSSPlugin);
 let slideNum;
 
@@ -58,12 +60,16 @@ const PinkDividerLeft = () => (
 class Home extends Component {
   constructor(props) {
     super(props);
+    this.headerText = React.createRef();
   }
   state = {
     key: "(EN]KP}pzz]avzqE96XnW?AtuZju9",
     validated: false,
+    headerText: "with everything taken care of, for a low monthly fee.",
   };
-
+  textChange = () => {
+    this.headerText.current.textChange();
+  };
   componentDidMount() {
     this._mounted = true;
 
@@ -196,49 +202,10 @@ class Home extends Component {
               </div>
 
               <div className="mainTitles">
-                <h2
-                  id="color1"
-                  data-aos="fade-right"
-                  data-aos-offset="150"
-                  data-aos-easing="ease-out"
-                  data-aos-duration="500"
-                >
-                  with everything taken care of, for a low monthly fee.
-                </h2>
-                {/*  <h2
-                  id="color2"
-                  data-aos="fade-right"
-                  data-aos-offset="150"
-                  data-aos-easing="ease-out"
-                  data-aos-duration="600"
-                >
-                  crypto e-commerce
-                </h2>
-                <h2
-                  id="color3"
-                  data-aos="fade-right"
-                  data-aos-offset="150"
-                  data-aos-easing="ease-out"
-                  data-aos-duration="700"
-                >
-                  smart contracts
-                </h2>
-                <h2
-                  id="color4"
-                  data-aos="fade-right"
-                  data-aos-offset="150"
-                  data-aos-easing="ease-out"
-                  data-aos-duration="800"
-                >
-                  web apps
-                </h2> */}
+                <HeaderTextAnimation ref={this.headerText} />
               </div>
             </div>
-
-            {/*  <img id="screen" src="/images/macImage.png" /> */}
-            <Animation />
-
-            {/*       <img src="/images/portfolio/fullstack/virginHolidays1.jpg" /> */}
+            <Animation textChange={this.textChange} />
           </div>
 
           <PinkDividerRight />
