@@ -42,7 +42,7 @@ class Animation extends Component {
     tl.pause();
   };
   play = () => {
-    tl.play("grabipad");
+    tl.play("text15_customerRelationshipProgram");
   };
   componentDidMount() {
     let faceChange = this.faceChange;
@@ -232,6 +232,7 @@ class Animation extends Component {
       .to(".textChanger", {
         duration: 0,
         onComplete: textChange,
+        onCompleteParams: ["or maybe you already do"],
       })
       .fromTo(
         ".animation-desk",
@@ -281,6 +282,8 @@ class Animation extends Component {
 
           ease: "Power1.easeInOut(1, 1)",
           transformOrigin: "35% 90%",
+          onCompleteParams: ["meh"],
+          onComplete: faceChange,
         },
         "-=.5"
       )
@@ -290,13 +293,16 @@ class Animation extends Component {
         duration: 0,
 
         onComplete: textChange,
+        onCompleteParams: ["by now you know there’s more to internet commerce"],
       })
-
+      // TEXT CHANGE
       .to(".textChanger", {
-        delay: 3,
+        delay: 2,
 
         onComplete: textChange,
+        onCompleteParams: ["than just creating an online shop."],
       })
+
       .addLabel("text4_thanSimplySetting")
       .fromTo(
         ".animation-sign",
@@ -314,38 +320,45 @@ class Animation extends Component {
         },
         "text4_thanSimplySetting"
       )
+      .to(
+        ".faceChanger",
+        {
+          delay: 0,
+          onCompleteParams: ["mehr"],
+          onComplete: faceChange,
+        },
+        "-=2"
+      )
 
       .to(
         ".animation-head",
         {
           rotation: 0,
-          duration: 1,
-          delay: 0,
+          duration: 2,
+          delay: 1,
           ease: "Power1.easeInOut(1, 1)",
-          onCompleteParams: ["meh"],
-          onComplete: faceChange,
         },
-        "text4_thanSimplySetting",
-        "=-2"
+        "text3_byNowYouRealize"
       )
+      .to(".pause", {
+        duration: 1,
+      })
+      // TEXT CHANGE
+      .addLabel("text5_whatabouteverythingelse")
+      .to(".textChanger", {
+        duration: 0,
+        onComplete: textChange,
+        onCompleteParams: ["What about everything else?"],
+      })
       .to(
         ".animation-desk",
         {
-          duration: 0.5,
+          duration: 1,
           yPercent: 100,
-          delay: 3,
+
           ease: "Power1.easeInOut(1, 1)",
         },
-        "-=.5"
-      ) // TEXT CHANGE
-      .addLabel("text5_whatabouteverythingelse")
-      .to(
-        ".textChanger",
-        {
-          duration: 0,
-          onComplete: textChange,
-        },
-        "-=.5"
+        "text5_whatabouteverythingelse"
       )
       .to(
         ".animation-sign",
@@ -355,14 +368,18 @@ class Animation extends Component {
           transformOrigin: "50% 0%",
           ease: "Power4.easeIn(1, 1)",
         },
-        "-=1"
+        "text5_whatabouteverythingelse"
       )
-      .to(".animation-head", {
-        rotation: 0,
-        duration: 0.5,
-        onCompleteParams: ["rhand", "lhand"],
-        onComplete: handChange,
-      })
+      .to(
+        ".animation-head",
+        {
+          rotation: 0,
+          duration: 0.5,
+          onCompleteParams: ["rhand", "lhand"],
+          onComplete: handChange,
+        },
+        "text5_whatabouteverythingelse"
+      )
       .to(
         ".animation-forearm_r",
         {
@@ -385,14 +402,14 @@ class Animation extends Component {
           yPercent: 20,
         },
         {
-          duration: 0.3,
+          duration: 0.5,
           opacity: 1,
           yPercent: -20,
           ease: "Expo.easeOut(1, 1)",
         }
       )
       .to(".animation-inventory", {
-        duration: 0.3,
+        duration: 0.5,
         opacity: 0,
         yPercent: -60,
         delay: 0.5,
@@ -405,14 +422,14 @@ class Animation extends Component {
           yPercent: 20,
         },
         {
-          duration: 0.3,
+          duration: 0.5,
           opacity: 1,
           yPercent: -20,
           ease: "Expo.easeOut(1, 1)",
         }
       )
       .to(".animation-50percent", {
-        duration: 0.3,
+        duration: 0.5,
         opacity: 0,
         yPercent: -60,
         delay: 0.5,
@@ -426,7 +443,7 @@ class Animation extends Component {
           yPercent: 120,
         },
         {
-          duration: 2,
+          duration: 3,
 
           yPercent: -180,
         },
@@ -440,14 +457,14 @@ class Animation extends Component {
           yPercent: 20,
         },
         {
-          duration: 0.5,
+          duration: 1,
           opacity: 1,
-          yPercent: -20,
+          yPercent: -10,
           ease: "Expo.easeOut(1, 1)",
           onCompleteParams: ["surprise"],
           onComplete: faceChange,
         },
-        "-=.5"
+        "-=1"
       )
       .to(".animation-truck", {
         duration: 0.5,
@@ -463,35 +480,36 @@ class Animation extends Component {
           yPercent: 0,
         },
         {
-          duration: 0.5,
+          duration: 1,
           opacity: 1,
-          yPercent: -40,
+          yPercent: -30,
           ease: "Expo.easeOut(1, 1)",
           onCompleteParams: ["surprise"],
           onComplete: faceChange,
         }
       )
       .to(".animation-handbagbroke", {
-        duration: 0.5,
+        duration: 1,
         opacity: 0,
         yPercent: -80,
         ease: "Expo.easeIn(1, 1)",
       })
       .to(".animation-forearm_r", {
-        duration: 0.5,
+        duration: 0.2,
         rotation: 10,
         yPercent: 12,
         xPercent: 3,
         ease: "Power1.easeInOut(1, 1)",
         transformOrigin: "90% 90%",
-        onCompleteParams: ["shout"],
-        onComplete: faceChange,
       })
       // TEXT CHANGE
       .addLabel("text6_orTheFullTimeJob")
       .to(".textChanger", {
         duration: 0,
         onComplete: textChange,
+        onCompleteParams: [
+          "Or the full time job of driving quality leads and sales?",
+        ],
       })
       .to(
         ".animation-arm_r",
@@ -515,6 +533,8 @@ class Animation extends Component {
           scale: 1,
           duration: 0.3,
           ease: "Elastic.easeInOut(1, 1)",
+          onCompleteParams: ["shout"],
+          onComplete: faceChange,
         },
         "+=.1"
       )
@@ -607,8 +627,8 @@ class Animation extends Component {
         ease: "Expo.easeInOut(1, 1)",
       })
       .fromTo(
-        ".box",
-        { scale: 0, yPercent: 50, xPercent: 200 },
+        ".megaphone-item",
+        { scale: 0, yPercent: 90, xPercent: 200 },
         {
           duration: 1,
           scale: 2,
@@ -625,6 +645,9 @@ class Animation extends Component {
       .to(".textChanger", {
         duration: 0,
         onComplete: textChange,
+        onCompleteParams: [
+          "Or turning one-time customers into loyal brand advocates?",
+        ],
       })
       .to(
         ".animation-arm_l",
@@ -722,6 +745,7 @@ class Animation extends Component {
         {
           duration: 0,
           onComplete: textChange,
+          onCompleteParams: ["Sounds expensive, right?"],
         },
         "-=1"
       )
@@ -790,6 +814,9 @@ class Animation extends Component {
         {
           duration: 0,
           onComplete: textChange,
+          onCompleteParams: [
+            "Wombil is a turnkey e-commerce and marketing solution,",
+          ],
         },
         "-=1"
       )
@@ -944,6 +971,9 @@ class Animation extends Component {
         {
           duration: 0,
           onComplete: textChange,
+          onCompleteParams: [
+            "with everything you need included in a low monthly fee.",
+          ],
         },
         "-=3"
       )
@@ -1015,12 +1045,17 @@ class Animation extends Component {
         },
         "ipadGrow"
       )
+
+      // TEXT CHANGE
       .addLabel("text11_beautifullyBrandedStore")
       .to(
         ".textChanger",
         {
           duration: 0,
           onComplete: textChange,
+          onCompleteParams: [
+            "Sign up and get a beautifully branded online store,",
+          ],
         },
         "-=1"
       )
@@ -1030,7 +1065,7 @@ class Animation extends Component {
         {
           scale: 1,
           duration: 0.6,
-          delay: 0.6,
+          delay: 1,
           ease: "Elastic.easeOut(1, 1)",
         },
         "ipadGrow"
@@ -1038,49 +1073,82 @@ class Animation extends Component {
       .to(".animation-store", {
         scaleY: 0,
         duration: 0.3,
-        delay: 3,
+        delay: 2,
         ease: "Power4.easeOut(1, 1)",
       })
+      // TEXT CHANGE
+      .addLabel("text12_withReliableInventory")
+      .to(
+        ".textChanger",
+        {
+          duration: 0,
+          onComplete: textChange,
+          onCompleteParams: ["with reliable inventory management,"],
+        },
+        "-=1"
+      )
       .fromTo(
         ".animation-inventory",
-        { scale: 0, opacity: 0 },
+        { scale: 0, opacity: 0, yPercent: 90 },
         {
           scale: 1,
           opacity: 1,
           xPercent: -35,
-          yPercent: 0,
+          yPercent: 90,
           duration: 0.5,
           ease: "Elastic.easeOut(1, 1)",
         },
-        "-=.3"
+        "text12_withReliableInventory"
       )
       .to(".animation-inventory", {
         scaleY: 0,
         duration: 0.3,
-        delay: 1,
+        delay: 2,
         ease: "Power4.easeOut(1, 1)",
       })
+      // TEXT CHANGE
+      .addLabel("text13_allMajorShipping")
+      .to(
+        ".textChanger",
+        {
+          duration: 0,
+          onComplete: textChange,
+          onCompleteParams: ["integration with all major couriers,"],
+        },
+        "-=1"
+      )
       .fromTo(
         ".animation-truck",
-        { scale: 0.5, opacity: 0, xPercent: 0 },
+        { scale: 0.5, opacity: 0, xPercent: 0, yPercent: 95 },
         {
           scale: 1,
           opacity: 1,
           xPercent: -40,
-          yPercent: 30,
+          yPercent: 95,
           duration: 0.5,
           ease: "Elastic.easeOut(1, 1)",
           transformOrigin: "150% 220%",
         },
-        "-=.3"
+        "text13_allMajorShipping"
       )
       .to(".animation-truck", {
         xPercent: -100,
         opacity: 0,
         duration: 0.3,
-        delay: 1,
+        delay: 2,
         ease: "Power4.easeIn(1, 1)",
       })
+      // TEXT CHANGE
+      .addLabel("text14_automaticBulkLabelling")
+      .to(
+        ".textChanger",
+        {
+          duration: 0,
+          onComplete: textChange,
+          onCompleteParams: ["automatic bulk labelling,"],
+        },
+        "-=1"
+      )
       .fromTo(
         ".package",
         { scale: 0, rotation: -20 },
@@ -1090,19 +1158,29 @@ class Animation extends Component {
           scale: 1,
           ease: "Elastic.easeOut(1, 1)",
           stagger: 0.1,
-        }
+        },
+        "text14_automaticBulkLabelling"
       )
+      .to(".package", {
+        duration: 0.5,
+        scale: 0,
+        rotation: 20,
+        delay: 1,
+        ease: "Power4.easeIn(2, .1)",
+        stagger: 0.1,
+      })
+      // TEXT CHANGE
+      .addLabel("text15_customerRelationshipProgram")
       .to(
-        ".package",
-
+        ".textChanger",
         {
-          duration: 0.5,
-          scale: 0,
-          rotation: 20,
-          delay: 1,
-          ease: "Power4.easeIn(2, .1)",
-          stagger: 0.1,
-        }
+          duration: 0,
+          onComplete: textChange,
+          onCompleteParams: [
+            "a customer relationship program to drive repeat purchases,",
+          ],
+        },
+        "-=1"
       )
       .fromTo(
         ".dollar",
@@ -1114,7 +1192,7 @@ class Animation extends Component {
           ease: "Elastic.easeOut(1, 1)",
           stagger: 0.1,
         },
-        "-=.8"
+        "text15_customerRelationshipProgram"
       )
       .to(
         ".dollar",
@@ -1127,6 +1205,19 @@ class Animation extends Component {
           ease: "Power4.easeIn(2, .1)",
           stagger: 0.1,
         }
+      )
+      // TEXT CHANGE
+      .addLabel("text17_fullSuiteMarketing")
+      .to(
+        ".textChanger",
+        {
+          duration: 0,
+          onComplete: textChange,
+          onCompleteParams: [
+            "and a full suite of marketing services to keep 'em coming.",
+          ],
+        },
+        "-=1"
       )
       .fromTo(
         ".marketing-item",
@@ -1147,7 +1238,7 @@ class Animation extends Component {
           stagger: 0.2,
           ease: "Elastic.easeOut(1, 1)",
         },
-        "-=1"
+        "text17_fullSuiteMarketing"
       )
       .fromTo(
         ".marketing-measure",
@@ -1198,7 +1289,7 @@ class Animation extends Component {
         {
           duration: 1.3,
           yPercent: 0,
-          xPercent: -15,
+          xPercent: -5,
 
           ease: "Power1.easeInOut(1, 1)",
           onCompleteParams: ["happyUp"],
@@ -1263,6 +1354,32 @@ class Animation extends Component {
           onComplete: handChange,
         },
         "endscene"
+      ) // TEXT CHANGE
+      .addLabel("text18_signUpToWombil")
+      .to(
+        ".textChanger",
+        {
+          duration: 0,
+          onComplete: textChange,
+          onCompleteParams: [
+            <div>
+              Sign up now and discover hassle-free online selling,
+              <br />
+              from soup to nuts.
+            </div>,
+          ],
+        },
+        "-=1"
+      )
+      .fromTo(
+        ".signup-button",
+        { scale: 0 },
+        {
+          duration: 0.4,
+          scale: 1,
+          delay: 2,
+          ease: "Elastic.easeOut(1, 1)",
+        }
       );
 
     /*
@@ -1307,6 +1424,7 @@ class Animation extends Component {
             />
           </>
         ) : null}
+        <div className="button-primary signup-button">Sign up now</div>
         <div className="animation-marketing">
           <div className="marketing-chat marketing-item">
             <img src={`/images/animation/marketing/chat.svg`} />
@@ -1401,12 +1519,12 @@ class Animation extends Component {
             <img src={`/images/animation/laptop.svg`} />
           </div>
         </div>
-        <div className="buttonMovie" onClick={this.pause}>
+        {/*   <div className="buttonMovie" onClick={this.pause}>
           Pause
         </div>
         <div className="buttonMovie" onClick={this.play}>
           Go
-        </div>
+        </div> */}
         <div className="animation-sign">
           <div id="sign">
             <img src={`/images/animation/sign.svg`} />
@@ -1481,9 +1599,21 @@ class Animation extends Component {
         </div>
 
         <div className="animation-lady">
-          <div className="box">Fart</div> <div className="box">Fart</div>
-          <div className="box">Fart</div> <div className="box">Fart</div>
-          <div className="box">Fart</div>
+          <div className="megaphone-item">
+            <img src={`/images/animation/marketing/fb.svg`} />
+          </div>
+          <div className="megaphone-item">
+            <img src={`/images/animation/marketing/twitter.svg`} />
+          </div>
+          <div className="megaphone-item">
+            <img src={`/images/animation/marketing/chat.svg`} />
+          </div>
+          <div className="megaphone-item">
+            <img src={`/images/animation/marketing/jet.svg`} />
+          </div>
+          <div className="megaphone-item">
+            <img src={`/images/animation/marketing/google.svg`} />
+          </div>
           <div className="animation-head">
             <div id="head">
               <img src="/images/animation/head.svg" />
@@ -1499,10 +1629,27 @@ class Animation extends Component {
               </div>
             </div>
             <div className="benefitsHolder">
-              <div className="benefit"> </div> <div className="benefit"></div>
-              <div className="benefit"> </div> <div className="benefit"></div>
-              <div className="benefit"></div> <div className="benefit"></div>
-              <div className="benefit"></div>
+              <div className="benefit">
+                <img src={`/images/animation/handbag.svg`} />
+              </div>
+              <div className="benefit">
+                <img src={`/images/animation/marketing/chat.svg`} />
+              </div>
+              <div className="benefit">
+                <img src={`/images/animation/50percent.svg`} />
+              </div>
+              <div className="benefit">
+                <img src={`/images/animation/marketing/google.svg`} />
+              </div>
+              <div className="benefit">
+                <img src={`/images/animation/truck.svg`} />
+              </div>
+              <div className="benefit">
+                <img src={`/images/animation/balloons.svg`} />
+              </div>
+              <div className="benefit">
+                <img src={`/images/animation/store.svg`} />
+              </div>
             </div>
             <div className="animation-torso">
               <img src="/images/animation/body.svg" />

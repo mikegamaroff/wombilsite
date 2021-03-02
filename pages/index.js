@@ -67,8 +67,8 @@ class Home extends Component {
     validated: false,
     headerText: "with everything taken care of, for a low monthly fee.",
   };
-  textChange = () => {
-    this.headerText.current.textChange();
+  textChange = (content) => {
+    this.headerText.current.textChange(content);
   };
   componentDidMount() {
     this._mounted = true;
