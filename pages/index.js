@@ -146,12 +146,11 @@ class Home extends Component {
   render() {
     const { errors } = this.state;
     const { classes } = this.props;
-    const title =
-      "Caqophony - Brand activation, crypto apps, smart contracts and web applications";
+    const title = "Wombil - Your online business, from soup to nuts.";
     const description =
       "Consumers enjoy being challenged, entertained, enticed, helped, educated and enthralled. It’s the only way to forge meaningful relationships that last beyond the click. Harness the power of cutting edge digital engagement applications integrating with blockchain and crypto technology for a wide variety of benefits, such as contests, challenges, Mini-games, Incentives, sampling, couponing, location-based, social apps, rich media, mobile experiential, Bitcoin payment apps, rewards and incentivization, virtual currency, tokens, digital collectibles, wallets, invoicing, statements, fintech, digital rights management, fractional commodities, data privacy, deeds, supply chain management, identity, gaming, tokenization, utilities, business tools, e-learning, platforms ,social networking, communication, online stores, multimedia, UX/UI, full-stack development and rsponsive web sites.";
-    const sitename = "Caqophony";
-    const siteurl = "http://caqophony.com";
+    const sitename = "Wombil";
+    const siteurl = "http://wombil.com";
     const summary =
       "Consumers enjoy being challenged, entertained, enticed, helped, educated and enthralled. It’s the only way to forge meaningful relationships that last beyond the click.";
 
@@ -174,31 +173,18 @@ class Home extends Component {
           <meta name="twitter:description" content={description} />
           <meta name="twitter:site" content={siteurl} />
           <meta name="twitter:creator" content={sitename} />
-          <link
-            rel="icon"
-            type="image/png"
-            href="https://caqophony.com/favicon.ico"
-          />
-          <link
-            rel="apple-touch-icon"
-            href="https://caqophony.com/favicon.ico"
-          />
+          <link rel="icon" type="image/png" href="favicon.ico" />
+          <link rel="apple-touch-icon" href="favicon.ico" />
           <link rel="stylesheet" href="" />
-          <meta
-            property="og:image"
-            content="https://caqophony.com/images/mainLogo.svg"
-          />
-          <meta
-            name="twitter:image"
-            content="https://caqophony.com/images/mainLogo.svg"
-          />
+          <meta property="og:image" content="/images/Logo.svg" />
+          <meta name="twitter:image" content="/images/Logo.svg" />
           <link rel="canonical" href={siteurl} />
         </Head>
         <section className="blackback" id="plain">
           <div className="header">
             <div>
               <div className="headerImage">
-                <img src="/images/mainLogo.svg" />
+                <img src="/images/Logo.svg" />
               </div>
 
               <div className="mainTitles">
